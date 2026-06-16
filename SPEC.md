@@ -129,7 +129,7 @@ market-data 文档使用 camelCase 风格描述字段语义；在下游实现中
 | ID | 需求 | WHEN | THEN |
 | --- | --- | --- | --- |
 | FR-MD-001 | dispatch-port | Binance adapter 完成事件归一化后提交事件 | 必须调用 downstream dispatch port，不得绕过 `market-data` 直写存储、队列或策略入口。 |
-| FR-MD-002 | canonical-input | 接收侧读取事件载荷 | 载荷必须引用 `domain-market` canonical `MarketEventEnvelope` 语义（Go 类型 `MarketEventEnvelope`，即 `MarketFactEnvelope` 的 canonical 名称），不允许 Binance 原始 DTO 泄漏。 |
+| FR-MD-002 | canonical-input | 接收侧读取事件载荷 | 载荷必须引用 `domain-market` canonical `MarketFactEnvelope` 语义（Go 类型 `MarketFactEnvelope`，别名 `MarketEventEnvelope`），不允许 Binance 原始 DTO 泄漏。 |
 | FR-MD-003 | idempotency | 接收同一 idempotencyKey | 相同 payload fingerprint 返回幂等 ack；不同 fingerprint 返回 reject。 |
 | FR-MD-004 | ordering | 接收同一 orderingKey 的带序列事件 | 必须检测 sequence 倒退、跳跃和重复，并返回明确 outcome。 |
 | FR-MD-005 | quality-gate | eventTime、receivedAt 或 quality 不合法 | 必须 fail-closed，返回 reject，且记录原因分类。 |
@@ -162,7 +162,7 @@ market-data 文档使用 camelCase 风格描述字段语义；在下游实现中
 | AC ID | FR/BR Ref | Criterion | Verification | Status |
 | --- | --- | --- | --- | --- |
 | AC-MD-001 | FR-MD-001, BR-MD-001 | Binance SPEC 可明确以 downstream dispatch port 作为行情事件交付边界，禁止直写下游。 | 文档引用检查 | Baseline Published |
-| AC-MD-002 | FR-MD-002, BR-MD-002 | 接收侧输入字段只引用 `ProductLine`、`InstrumentKey`、`MarketEventEnvelope` canonical 语义，不包含 Binance DTO 名称或原始响应字段。 | 边界扫描 | Baseline Published |
+| AC-MD-002 | FR-MD-002, BR-MD-002 | 接收侧输入字段只引用 `ProductLine`、`InstrumentKey`、`MarketFactEnvelope` canonical 语义，不包含 Binance DTO 名称或原始响应字段。 | 边界扫描 | Baseline Published |
 | AC-MD-003 | FR-MD-003, FR-MD-004 | 幂等键与排序键规则已形成后续单元测试基线。 | 任务基线检查 | Baseline Published |
 | AC-MD-004 | FR-MD-005, FR-MD-006, BR-MD-004 | reject/failure 分类清晰区分 retryable。 | TRACEABILITY 检查 | Baseline Published |
 | AC-MD-005 | FR-MD-007, FR-MD-008, NFR-MD-001, NFR-MD-003 | 批量 outcome 与观测维度覆盖 venue/productLine/channel/outcome/reason。 | TRACEABILITY 检查 | Baseline Published |
@@ -186,7 +186,7 @@ market-data 文档使用 camelCase 风格描述字段语义；在下游实现中
 | DownstreamDispatchPort docs baseline | Published | 本 SPEC 已定义端口语义、输入字段、outcome、reject reason、FR/BR/NFR/AC 与后续实现门禁。 |
 | Receiving-side SPEC baseline | Published | 接收侧 fail-closed、idempotency、ordering、quality gate、batch outcome 与 observability 语义已可被 `module/binance` 引用。 |
 | Runtime implementation | Pending | 本次不新增 Go 源码、依赖、wire schema、存储表、队列 topic 或运行时测试声明。 |
-| Canonical domain dependency | External / Docs baseline present | `ProductLine`、`InstrumentKey`、`MarketEventEnvelope`（= `MarketFactEnvelope`）语义由 `module/domain-market` 拥有，docs-only 类型定义已补充；运行时冻结待 domain-market 发布。 |
+| Canonical domain dependency | External / Docs baseline present | `ProductLine`、`InstrumentKey`、`MarketFactEnvelope`（= `MarketEventEnvelope`）语义由 `module/domain-market` 拥有，docs-only 类型定义已补充；运行时冻结待 domain-market 发布。 |
 | Cross-module naming alignment | Baseline Published | §4.2.1 已建立跨模块字段命名映射表。 |
 | Binance reject mapping | Baseline Published | §4.4.1 已建立 binance-native → market-data reject 映射规则。 |
 
