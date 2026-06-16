@@ -1,13 +1,13 @@
 # market-data 规格
 
-- Status: Docs Baseline Approved / Runtime Pending
+- Status: Docs Baseline Approved
 - Spec-Version: v1.0.0
 - Last-Updated: 2026-06-17
 - Layer: L3 行情摄取与分发
 - Module-Version: v1.0.0-spec
 - Related: `module/binance`, `module/domain-market`, `module/contracts`
 
-> 本文件发布 downstream dispatch port / receiving-side SPEC 的文档基线，不引入运行时代码、依赖或 wire schema。`market-data` 的运行时实现仍为 Pending；上游 `module/domain-market` 与 `module/contracts` 的 docs-only 契约基线已补充完毕（ProductLine/InstrumentKey/MarketFactEnvelope + §8.4 Ingestion Contract），运行时冻结待各模块发布。
+> 本文件发布 downstream dispatch port / receiving-side SPEC 的文档基线，不引入运行时代码、依赖或 wire schema。上游 `module/domain-market` 与 `module/contracts` 的 docs-only 契约基线已补充完毕（ProductLine/InstrumentKey/MarketFactEnvelope + §8.4 Ingestion Contract）。运行时代码实现与 TC-MD-003~008 测试进入后续阶段。
 
 ---
 
@@ -200,7 +200,7 @@ market-data 文档使用 camelCase 风格描述字段语义；在下游实现中
 - [ ] **Reject Mapping 验证**: `module/binance` 的 dispatch 适配层可引用 §4.4.1 映射规则实现 reject 转换。
 - [ ] **Naming Mapping 验证**: 跨模块字段命名无残余矛盾；Go 代码中 struct 字段来自 domain-market import，JSON 序列化遵循 contracts BR-009 snake_case。
 - [ ] **Test Gate 通过**: TC-MD-003 至 TC-MD-008 的运行时测试已实现并通过。
-- [ ] `module/binance` 不再将 `module/contracts`、`module/domain-market`、`module/market-data` 列为 Blocking。
+- [x] `module/binance` 不再将 `module/contracts`、`module/domain-market`、`module/market-data` 列为 Blocking（§22 已重命名为 Resolved (was Blocking)，OQ-001/OQ-002 已关闭）。
 
 > 以上全部满足后，本模块状态可推进为 `Published`。
 
