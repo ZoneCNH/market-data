@@ -174,7 +174,7 @@ market-data 文档使用 camelCase 风格描述字段语义；在下游实现中
 | --- | --- | --- |
 | Contract Gate | `module/contracts` 批准对应 wire schema（§8.4 ingestion contract）或明确无需跨进程 wire schema。 | Docs baseline present — contracts §8.4 已补充（docs-only），运行时 wire schema 待后续批准 |
 | Domain Gate | `module/domain-market` 批准 `ProductLine`、`InstrumentKey`、`MarketEventEnvelope`、quality 语义。 | Docs baseline present — domain-market 已定义 ProductLine/InstrumentKey/MarketFactEnvelope（docs-only），运行时冻结待后续批准 |
-| Adapter Gate | `module/binance` SPEC 引用本 dispatch port，且不再将下游交付语义留空。 | 已确认 — binance OQ-001 已关闭（contracts §8.4 wire types defined），OQ-002 已关闭（market-data SPEC v0.1.1 已定义 DownstreamDispatchPort 语义、12 字段、8 种 reject reason 及 binance reject 映射规则）；binance SPEC 已引用 market-data downstream dispatch port |
+| Adapter Gate | `module/binance` SPEC 引用本 dispatch port，且不再将下游交付语义留空。 | 已确认 — binance OQ-001 已关闭（contracts §8.4 wire types defined），OQ-002 已关闭（market-data SPEC v1.0.0 已定义 DownstreamDispatchPort 语义、12 字段、8 种 reject reason 及 binance reject 映射规则）；binance SPEC 已引用 market-data downstream dispatch port |
 | Reject Mapping Gate | binance-native reject classification 到 market-data §4.4.1 的映射规则已文档化。 | Baseline Published（本次新增） |
 | Naming Mapping Gate | 跨模块字段命名映射表（§4.2.1）已纳入 SPEC。 | Baseline Published（本次新增） |
 | Test Gate | 后续实现必须覆盖幂等、排序、quality fail-closed、retry classification 与 batch partial failure。 | Pending — 无运行时代码 |
@@ -195,8 +195,8 @@ market-data 文档使用 camelCase 风格描述字段语义；在下游实现中
 在将本模块状态从 `Runtime Pending` 转为 `Published` 之前，必须逐项确认：
 
 - [x] **Contract Gate 通过**: `module/contracts/SPEC.md` 的 §8.4 ingestion contract（`MarketDataService` / `IngestRequest` / `IngestResult`）已补充（docs baseline），运行时 proto 编译待后续阶段。
-- [x] **Domain Gate 通过**: `module/domain-market/SPEC.md` v1.1.0 已定义 `ProductLine`（含 IsValid()）、`InstrumentKey`（Venue/InstrumentType 维度矩阵）、`MarketFactEnvelope` 类型，语义已冻结（docs baseline）。
-- [x] **Adapter Gate 通过**: `module/binance/SPEC.md` 的 OQ-001（contracts wire 就绪？）已关闭（contracts §8.4）；OQ-002（market-data dispatch port 就绪？）已关闭（market-data SPEC v0.1.1 DownstreamDispatchPort 语义 + 12 字段 + 8 种 reject reason + binance reject 映射规则）。
+- [x] **Domain Gate 通过**: `module/domain-market/SPEC.md` v1.0.1 已定义 `ProductLine`(spot/um_perp/cm_perp/option)、`InstrumentKey`(11字段)、`MarketFactEnvelope`(=MarketEventEnvelope) 类型，语义已补充（docs baseline）；运行时冻结待 domain-market 发布。
+- [x] **Adapter Gate 通过**: `module/binance/SPEC.md` 的 OQ-001（contracts wire 就绪？）已关闭（contracts §8.4）；OQ-002（market-data dispatch port 就绪？）已关闭（market-data SPEC v1.0.0 DownstreamDispatchPort 语义 + 12 字段 + 8 种 reject reason + binance reject 映射规则）。
 - [ ] **Reject Mapping 验证**: `module/binance` 的 dispatch 适配层可引用 §4.4.1 映射规则实现 reject 转换。
 - [ ] **Naming Mapping 验证**: 跨模块字段命名无残余矛盾；Go 代码中 struct 字段来自 domain-market import，JSON 序列化遵循 contracts BR-009 snake_case。
 - [ ] **Test Gate 通过**: TC-MD-003 至 TC-MD-008 的运行时测试已实现并通过。
