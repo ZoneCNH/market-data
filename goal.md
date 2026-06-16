@@ -1,10 +1,10 @@
-# goal: market-data v0.1.1
+# goal: market-data v1.0.0
 
-- Status: Docs Baseline Published / Runtime Pending
+- Status: Approved
 - Created: 2026-06-17
 - Updated: 2026-06-17
 - Owner: ZoneCNH
-- Related SPEC: module/market-data/SPEC.md v0.1.1
+- Related SPEC: module/market-data/SPEC.md v1.0.0
 
 ## 定位
 
