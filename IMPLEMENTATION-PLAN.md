@@ -41,7 +41,7 @@ Runtime implementation starts when:
 - [x] module/contracts provides approved IngestRequest/IngestResult types (§8.4 merged via #545)
 - [x] module/domain-market provides approved, consumable ProductLine/InstrumentKey/MarketFactEnvelope types (v1.0.1, canonical types + §10.1 Binance C/S ingestion semantics frozen)
 - [x] module/binance server OQ-001 (contracts wire ready?) closed — contracts §8.4 defines all wire types
-- [ ] module/binance server OQ-002 (market-data dispatch port ready?) closed — downstream dispatch failure strategy still pending
+- [x] module/binance server OQ-002 (market-data dispatch port ready?) closed — market-data SPEC v0.1.1 defines DownstreamDispatchPort semantics, 12 input fields, 8 reject reasons with binance reject mapping
 - [ ] All SPEC §9 implementation gates pass
 
 ## 6. DoD

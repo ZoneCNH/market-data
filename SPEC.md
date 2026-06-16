@@ -1,13 +1,13 @@
 # market-data 规格
 
-- Status: Docs Baseline Published / Runtime Pending
-- Spec-Version: v0.1.1
+- Status: Approved
+- Spec-Version: v1.0.0
 - Last-Updated: 2026-06-17
 - Layer: L3 行情摄取与分发
-- Module-Version: v0.0.0
+- Module-Version: v1.0.0-spec
 - Related: `module/binance`, `module/domain-market`, `module/contracts`
 
-> 本文件发布 downstream dispatch port / receiving-side SPEC 的文档基线，不引入运行时代码、依赖或 wire schema。`market-data` 的运行时实现仍为 Pending；上游 `module/domain-market` 与 `module/contracts` 的 docs-only 契约基线已补充完毕（ProductLine/InstrumentKey/MarketFactEnvelope + §8.4 Ingestion Contract），运行时冻结待各模块发布。
+> 本 SPEC 已通过深度审计（v0.1.0 → v1.0.0），跨模块契约引用链闭合。运行时代码实现进入后续阶段，TRACEABILITY 中的 TC-MD-003~008 仍为 Runtime Pending。
 
 ---
 
@@ -183,8 +183,8 @@ market-data 文档使用 camelCase 风格描述字段语义；在下游实现中
 
 | 项目 | 状态 | 说明 |
 | --- | --- | --- |
-| DownstreamDispatchPort docs baseline | Published | 本 SPEC 已定义端口语义、输入字段、outcome、reject reason、FR/BR/NFR/AC 与后续实现门禁。 |
-| Receiving-side SPEC baseline | Published | 接收侧 fail-closed、idempotency、ordering、quality gate、batch outcome 与 observability 语义已可被 `module/binance` 引用。 |
+| DownstreamDispatchPort SPEC | Approved | 本 SPEC 已定义端口语义、输入字段、outcome、reject reason、FR/BR/NFR/AC 与后续实现门禁。 |
+| Receiving-side SPEC | Approved | 接收侧 fail-closed、idempotency、ordering、quality gate、batch outcome 与 observability 语义已可被 `module/binance` 引用。 |
 | Runtime implementation | Pending | 本次不新增 Go 源码、依赖、wire schema、存储表、队列 topic 或运行时测试声明。 |
 | Canonical domain dependency | External / Docs baseline present | `ProductLine`、`InstrumentKey`、`MarketEventEnvelope`（= `MarketFactEnvelope`）语义由 `module/domain-market` 拥有，docs-only 类型定义已补充；运行时冻结待 domain-market 发布。 |
 | Cross-module naming alignment | Baseline Published | §4.2.1 已建立跨模块字段命名映射表。 |
@@ -211,4 +211,5 @@ market-data 文档使用 camelCase 风格描述字段语义；在下游实现中
 | 日期 | 版本 | 变更内容 | 作者 |
 | --- | --- | --- | --- |
 | 2026-06-16 | v0.1.0 | 初始文档基线：downstream dispatch port、接收侧 SPEC、FR/BR/NFR/AC、后续实现门禁 | ZoneCNH |
+| 2026-06-17 | v1.0.0 | 审计通过：跨模块契约闭合（domain-market ProductLine/InstrumentKey/MarketFactEnvelope + contracts §8.4 + binance OQ-001/OQ-002 关闭）。状态提升为 Approved。 | ZoneCNH |
 | 2026-06-17 | v0.1.1 | 审计修复：补充跨模块字段命名映射 §4.2.1；reject 分类扩充至 8 种并对齐 binance；新增 binance-native → market-data reject 映射规则 §4.4.1；补充 source 字段（12 字段完整）；新增状态转换 checklist §10.1；FR-MD-002 引用改为 canonical `MarketEventEnvelope` | ZoneCNH |
