@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/ZoneCNH/domain-market/pkg/domainmarket"
 )
 
 // DownstreamDispatchPort is the receiving-side entry point for normalized market events.
@@ -19,8 +20,8 @@ type DownstreamDispatchPort interface {
 // AcceptedMarketEvent is an adapter-normalized event ready for downstream dispatch.
 type AcceptedMarketEvent struct {
 	Venue          string
-	ProductLine    string
-	InstrumentKey  string
+	ProductLine    domainmarket.ProductLine
+	InstrumentKey  domainmarket.InstrumentKey
 	Channel        string
 	EventTime      time.Time
 	ReceivedAt     time.Time
