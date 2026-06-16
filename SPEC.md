@@ -79,7 +79,7 @@ market-data 文档使用 camelCase 风格描述字段语义；在下游实现中
 | 产品线 | productLine | ProductLine | product_line | product_line |
 | 标的标识 | instrumentKey | InstrumentKey | instrument_key | instrument_key |
 | 数据通道 | channel | (**domain-market 不定义**) | — | (**parser 内部**) |
-| 事件载荷 | payload (MarketFactEnvelope) | MarketEventEnvelope | payload | MarketFactEnvelope |
+| 事件载荷 | payload (MarketFactEnvelope) | MarketFactEnvelope | payload | MarketFactEnvelope |
 | 事件时间 | eventTime | EventTime | timestamp | decision_time |
 | 接收时间 | receivedAt | ReceivedAt | — | (**adapter 内部**) |
 | 源序列号 | sourceSequence | (**domain-market 不定义**) | source_sequence | — |
