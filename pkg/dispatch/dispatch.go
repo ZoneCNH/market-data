@@ -19,8 +19,8 @@ type DownstreamDispatchPort interface {
 // AcceptedMarketEvent is an adapter-normalized event ready for downstream dispatch.
 type AcceptedMarketEvent struct {
 	Venue          string
-	ProductLine    domainmarket.ProductLine
-	InstrumentKey  domainmarket.InstrumentKey
+	ProductLine    string
+	InstrumentKey  string
 	Channel        string
 	EventTime      time.Time
 	ReceivedAt     time.Time
