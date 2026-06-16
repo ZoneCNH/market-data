@@ -9,7 +9,7 @@ Deliver `module/market-data` v1.0.0 as the exchange-neutral downstream dispatch 
 - Docs baseline published (v0.1.1): DownstreamDispatchPort semantics, AcceptedMarketEvent contract (12 fields), 8 reject reasons with binance-native mapping, cross-module naming mapping, FR-MD-001~008 / BR-MD-001~006 / NFR-MD-001~004 / AC-MD-001~006
 - SPEC.md: merged to main via PR #545 (audit fix: naming alignment, reject mapping, ingestion contract)
 - TRACEABILITY.md / goal.md / IMPLEMENTATION-PLAN.md: PR-000 root docs (this PR)
-- Runtime: Pending (SPEC Approved v1.0.0-spec)
+- Runtime: Pending
 - Upstream dependencies: module/domain-market canonical types, module/contracts wire contract (§8.4)
 
 ## 3. PR Sequence
@@ -41,7 +41,7 @@ Runtime implementation starts when:
 - [x] module/contracts provides approved IngestRequest/IngestResult types (§8.4 merged via #545)
 - [x] module/domain-market provides approved, consumable ProductLine/InstrumentKey/MarketFactEnvelope types (v1.0.1, canonical types + §10.1 Binance C/S ingestion semantics frozen)
 - [x] module/binance server OQ-001 (contracts wire ready?) closed — contracts §8.4 defines all wire types
-- [x] module/binance server OQ-002 (market-data dispatch port ready?) closed — market-data SPEC v0.1.1 defines DownstreamDispatchPort semantics, 12 input fields, 8 reject reasons with binance reject mapping
+- [ ] module/binance server OQ-002 (market-data dispatch port ready?) closed — downstream dispatch failure strategy still pending
 - [ ] All SPEC §9 implementation gates pass
 
 ## 6. DoD
