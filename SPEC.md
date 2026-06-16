@@ -1,6 +1,6 @@
 # market-data 规格
 
-- Status: Approved
+- Status: Docs Baseline Approved / Runtime Pending
 - Spec-Version: v1.0.0
 - Last-Updated: 2026-06-17
 - Layer: L3 行情摄取与分发
