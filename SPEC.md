@@ -183,8 +183,8 @@ market-data 文档使用 camelCase 风格描述字段语义；在下游实现中
 
 | 项目 | 状态 | 说明 |
 | --- | --- | --- |
-| DownstreamDispatchPort docs baseline | Published | 本 SPEC 已定义端口语义、输入字段、outcome、reject reason、FR/BR/NFR/AC 与后续实现门禁。 |
-| Receiving-side SPEC baseline | Published | 接收侧 fail-closed、idempotency、ordering、quality gate、batch outcome 与 observability 语义已可被 `module/binance` 引用。 |
+| DownstreamDispatchPort SPEC | Approved | 本 SPEC 已定义端口语义、输入字段、outcome、reject reason、FR/BR/NFR/AC 与后续实现门禁。 |
+| Receiving-side SPEC | Approved | 接收侧 fail-closed、idempotency、ordering、quality gate、batch outcome 与 observability 语义已可被 `module/binance` 引用。 |
 | Runtime implementation | Pending | 本次不新增 Go 源码、依赖、wire schema、存储表、队列 topic 或运行时测试声明。 |
 | Canonical domain dependency | External / Docs baseline present | `ProductLine`、`InstrumentKey`、`MarketFactEnvelope`（= `MarketEventEnvelope`）语义由 `module/domain-market` 拥有，docs-only 类型定义已补充；运行时冻结待 domain-market 发布。 |
 | Cross-module naming alignment | Baseline Published | §4.2.1 已建立跨模块字段命名映射表。 |
