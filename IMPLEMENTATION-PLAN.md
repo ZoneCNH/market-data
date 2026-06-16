@@ -9,7 +9,7 @@ Deliver `module/market-data` v1.0.0 as the exchange-neutral downstream dispatch 
 - Docs baseline published (v0.1.1): DownstreamDispatchPort semantics, AcceptedMarketEvent contract (12 fields), 8 reject reasons with binance-native mapping, cross-module naming mapping, FR-MD-001~008 / BR-MD-001~006 / NFR-MD-001~004 / AC-MD-001~006
 - SPEC.md: merged to main via PR #545 (audit fix: naming alignment, reject mapping, ingestion contract)
 - TRACEABILITY.md / goal.md / IMPLEMENTATION-PLAN.md: PR-000 root docs (this PR)
-- Runtime: Pending
+- Runtime: Pending (SPEC Approved v1.0.0-spec)
 - Upstream dependencies: module/domain-market canonical types, module/contracts wire contract (§8.4)
 
 ## 3. PR Sequence
