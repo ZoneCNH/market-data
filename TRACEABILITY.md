@@ -1,10 +1,10 @@
-# module/market-data TRACEABILITY
+# market-data 需求追溯矩阵
 
-- Spec-Version: v0.1.1
+- Spec-Version: v1.0.0
 - Last-Updated: 2026-06-17
-- Status: Docs Baseline Published / Runtime Pending
+- Status: Approved (SPEC v1.0.0-spec)
 
-Status semantics: `Baseline Published` 表示文档中的 dispatch/receiving contract 已对齐且可被下游引用；runtime 实现和测试为 Pending。
+Status semantics: `Approved` 表示 SPEC 已通过审计、跨模块契约引用链闭合；`Runtime Pending` 表示 Go 实现与 TC-MD-003~008 测试未执行。
 
 ---
 
