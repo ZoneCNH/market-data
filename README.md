@@ -13,7 +13,7 @@ FoundationX 行情接收与分发模块 — downstream dispatch port receiving-s
 
 ## 状态
 
-v0.1.0 Docs Baseline Published — runtime pending.
+v1.0.0 — runtime ready.
 
 ## 依赖
 
